@@ -117,10 +117,27 @@ h1{
 
 .col-sm-12,
 .col-md-12,
-.img-responsive {
+.img-responsive,
+.contact-style {
+  margin-top: 30px;
 	text-align: center;
 	margin-left: auto;
   margin-right: auto;
   font-family: helvetica;
   color: grey;
 }
+
+.field,
+.actions {
+  text-align: center;
+}
+
+.newPostButton {
+  margin: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  font-size: 2em;
+}
+
+

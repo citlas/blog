@@ -26,7 +26,7 @@
       </tr>
     <% end %>
   </tbody>
-</table> -->
+</table>  -->
 
 <div class="container-fluid">
   <div class="row">
@@ -36,7 +36,7 @@
 <div class ="col-sm-12 col-md-12">
   <%= image_tag(post.image_url, class:"img-responsive")%>
 <h6> <%= post.date %></h6>
-<p> <%= post.title %></p>
+<h3> <%= post.title %></h3>
 <p> <%= post.body %></p>
 <%= link_to 'Show', post %>
 <%= link_to 'Edit', edit_post_path(post) %>
@@ -46,7 +46,6 @@
       <% end %>
   </div>
 </div>
+<p class="newPostButton"><%= link_to 'New Post', new_post_path %><p>
 
 <br>
-
-<%= link_to 'New Post', new_post_path %>

@@ -5,20 +5,32 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all.reverse
+    @featured_post = Post.first
+  end
+
+  def contact
+    @posts = Post.all.reverse
+    @featured_post = Post.first
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @posts = Post.all.reverse
+    @featured_post = Post.first
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+    @posts = Post.all.reverse
+    @featured_post = Post.first
   end
 
   # GET /posts/1/edit
   def edit
+    @posts = Post.all.reverse
+    @featured_post = Post.first
   end
 
   # POST /posts

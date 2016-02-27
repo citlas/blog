@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-
+<div class ="col-sm-12 col-md-12">
   <%= image_tag(@post.image_url, class:"img-responsive")%>
 <h6> <%= @post.date %></h6>
-<p> <%= @post.title %></p>
+<h3> <%= @post.title %></h3>
 <p> <%= @post.body %></p>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
+</div>
