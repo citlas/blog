@@ -1,11 +1,19 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+before_filter :authenticate_user!, :except => [:index] 
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.reverse
-    @featured_post = Post.first
+    if params[:q]
+      search_term = params[:q]
+      @posts = Post.where("body || title LIKE ?", "%#{search_term}%")
+      # return our filtered list here
+    else
+      @posts = Post.all.reverse
+    end
+  
+    
   end
 
   def contact
@@ -16,8 +24,10 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @posts = Post.all.reverse
+    
     @featured_post = Post.first
+    @comments = @post.comments.order("created_at DESC").paginate(:page => params[:page], :per_page => 3)
+
   end
 
   # GET /posts/new
@@ -25,6 +35,7 @@ class PostsController < ApplicationController
     @post = Post.new
     @posts = Post.all.reverse
     @featured_post = Post.first
+
   end
 
   # GET /posts/1/edit
@@ -71,7 +82,11 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
+
+
   end
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
