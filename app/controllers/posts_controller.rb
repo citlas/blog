@@ -82,10 +82,7 @@ before_filter :authenticate_user!, :except => [:index]
       format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
-
-
-  end
-
+end
 
 
   private
