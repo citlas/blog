@@ -1,11 +1,21 @@
 <div class="post-comments">
+    
+
+    
+
     <% @comments.each do |comment| %>
         <div class="row">
             <hr>
             <p><%= comment.user.first_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small></p>
-            
+
+		            <%= check_box_tag(:reviewed) %>
+		    				<%= label_tag(:reviewed, "Reviewed") %>
+		    				<%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+		            <% if comment.reviewed? %>
+
             <p><%= comment.body %></p>
         </div>
+    <% end %>
     <% end %>
 </div>
 
