@@ -46,6 +46,11 @@
       <% end %>
   </div>
 </div>
-<p class="newPostButton"><%= link_to 'New Post', new_post_path %><p>
-
+<div>
+  <% if signed_in? %>
+  <% if current_user.author || current_user.admin? %>
+<p class="newPostButton"><%= link_to 'New Post', new_post_path %></p>
+<%end%>
+<%end%>
+</div>
 <br>

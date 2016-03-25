@@ -27,8 +27,13 @@ class CommentsController < ApplicationController
     redirect_to post
   end
 
-  def show
-  
+  def update
+    @comment = Comment.find(params[:id])
+     post = @comment.post
+      @comment.reviewed = true
+      @comment.save
+      redirect_to post
+      
   end
 
 private
@@ -36,5 +41,6 @@ private
   def comment_params
     params.require(:comment).permit(:user_id, :body)
   end
+
 
 end
