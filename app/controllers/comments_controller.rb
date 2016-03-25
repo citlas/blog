@@ -27,6 +27,10 @@ class CommentsController < ApplicationController
     redirect_to post
   end
 
+  def show
+  
+  end
+
 private
 
   def comment_params

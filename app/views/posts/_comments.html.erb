@@ -1,22 +1,26 @@
 <div class="post-comments">
     
-
-    
-
     <% @comments.each do |comment| %>
         <div class="row">
             <hr>
-            <p><%= comment.user.first_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small></p>
+                <p><%= comment.user.first_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small></p>
 
-		            <%= check_box_tag(:reviewed) %>
-		    				<%= label_tag(:reviewed, "Reviewed") %>
-		    				<%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-		            <% if comment.reviewed? %>
+		          <% if user_signed_in? %>
+                  
+                  <%= form_tag("/comments/:id", method: "get") do %>
+                  <%= check_box_tag(:reviewed) %>
+		  			  <%= submit_tag("Review") %>
+                        <% end %>
 
-            <p><%= comment.body %></p>
+	  				<%= link_to 'Destroy', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+    	           <% end %>
+                   
+                    <% if comment.reviewed? %>
+                        <p><%= comment.body %></p>
+                    <% end %>
+                
         </div>
-    <% end %>
-    <% end %>
+                <% end %>    
 </div>
 
 <%= will_paginate @comments %>
